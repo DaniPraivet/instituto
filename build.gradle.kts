@@ -41,10 +41,10 @@ dependencies {
 
 tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
     archiveBaseName.set("instituto-all")
-    archiveClassifier.set("") // Esto hace que no tenga sufijo "-all"
+    archiveClassifier.set("")
     archiveVersion.set("1.0-SNAPSHOT")
     manifest {
-        attributes["Main-Class"] = "instituto.Vista.VentanaPrincipal"
+        attributes["Main-Class"] = "instituto.Vista.Main"
     }
 }
 
