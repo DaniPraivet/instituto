@@ -31,13 +31,11 @@ public class VentanaAgregarMatricula extends JFrame {
         setTitle("Agregar Matrícula");
         setLayout(new BorderLayout());
 
-        // Panel de formulario
         JPanel panelForm = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
 
-        // Alumno
         gbc.gridx = 0;
         gbc.gridy = 0;
         panelForm.add(new JLabel("Alumno:"), gbc);
@@ -45,7 +43,6 @@ public class VentanaAgregarMatricula extends JFrame {
         cmbAlumno = new JComboBox<>();
         panelForm.add(cmbAlumno, gbc);
 
-        // Asignatura
         gbc.gridx = 0;
         gbc.gridy = 1;
         panelForm.add(new JLabel("Asignatura:"), gbc);
@@ -53,7 +50,6 @@ public class VentanaAgregarMatricula extends JFrame {
         cmbAsignatura = new JComboBox<>();
         panelForm.add(cmbAsignatura, gbc);
 
-        // Nota
         gbc.gridx = 0;
         gbc.gridy = 2;
         panelForm.add(new JLabel("Nota:"), gbc);
@@ -61,7 +57,6 @@ public class VentanaAgregarMatricula extends JFrame {
         txtNota = new JTextField(10);
         panelForm.add(txtNota, gbc);
 
-        // Botones
         JPanel panelBotones = new JPanel();
         btnGuardar = new JButton("Guardar");
         btnCancelar = new JButton("Cancelar");
@@ -72,7 +67,6 @@ public class VentanaAgregarMatricula extends JFrame {
         add(panelForm, BorderLayout.CENTER);
         add(panelBotones, BorderLayout.SOUTH);
 
-        // Eventos
         btnGuardar.addActionListener(e -> guardarMatricula());
         btnCancelar.addActionListener(e -> dispose());
     }

@@ -37,24 +37,20 @@ public class GeneradorPDF {
 
         documento.open();
 
-        // Añadir título
         Paragraph parrafoTitulo = new Paragraph(titulo, FONT_TITULO);
         parrafoTitulo.setAlignment(Element.ALIGN_CENTER);
         parrafoTitulo.setSpacingAfter(10);
         documento.add(parrafoTitulo);
 
-        // Añadir fecha
         String fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         Paragraph parrafoFecha = new Paragraph("Generado: " + fecha, FONT_SUBTITULO);
         parrafoFecha.setAlignment(Element.ALIGN_CENTER);
         parrafoFecha.setSpacingAfter(20);
         documento.add(parrafoFecha);
 
-        // Crear tabla PDF
         PdfPTable tablaPDF = crearTablaPDF(tabla);
         documento.add(tablaPDF);
 
-        // Añadir información del pie
         Paragraph piePagina = new Paragraph(
                 String.format("Total de registros: %d", tabla.getRowCount()),
                 FONT_SUBTITULO
@@ -77,7 +73,6 @@ public class GeneradorPDF {
         tablaPDF.setSpacingBefore(10f);
         tablaPDF.setSpacingAfter(10f);
 
-        // Configurar anchos de columnas proporcionales
         try {
             float[] anchosColumnas = new float[numColumnas];
             TableColumnModel columnModel = tabla.getColumnModel();
@@ -89,7 +84,6 @@ public class GeneradorPDF {
             e.printStackTrace();
         }
 
-        // Añadir cabeceras
         JTableHeader cabecera = tabla.getTableHeader();
         for (int i = 0; i < numColumnas; i++) {
             PdfPCell celda = new PdfPCell(new Phrase(tabla.getColumnName(i), FONT_CABECERA));
@@ -100,7 +94,6 @@ public class GeneradorPDF {
             tablaPDF.addCell(celda);
         }
 
-        // Añadir filas
         for (int fila = 0; fila < tabla.getRowCount(); fila++) {
             for (int columna = 0; columna < numColumnas; columna++) {
                 Object valor = tabla.getValueAt(fila, columna);
@@ -109,7 +102,6 @@ public class GeneradorPDF {
                 PdfPCell celda = new PdfPCell(new Phrase(texto, FONT_CELDA));
                 celda.setPadding(5);
 
-                // Alternar colores de fila
                 if (fila % 2 == 0) {
                     celda.setBackgroundColor(BaseColor.WHITE);
                 } else {
@@ -141,20 +133,17 @@ public class GeneradorPDF {
 
         documento.open();
 
-        // Título principal
         Paragraph parrafoTitulo = new Paragraph(titulo, FONT_TITULO);
         parrafoTitulo.setAlignment(Element.ALIGN_CENTER);
         parrafoTitulo.setSpacingAfter(20);
         documento.add(parrafoTitulo);
 
-        // Fecha
         String fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         Paragraph parrafoFecha = new Paragraph("Generado: " + fecha, FONT_SUBTITULO);
         parrafoFecha.setAlignment(Element.ALIGN_CENTER);
         parrafoFecha.setSpacingAfter(30);
         documento.add(parrafoFecha);
 
-        // Añadir cada tabla
         for (TablaInfo info : tablas) {
             Paragraph subtitulo = new Paragraph(info.titulo, new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD));
             subtitulo.setSpacingBefore(15);

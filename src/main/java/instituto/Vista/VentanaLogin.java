@@ -18,7 +18,6 @@ public class VentanaLogin extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Panel principal
         JPanel panelPrincipal = new JPanel(new GridBagLayout());
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
@@ -26,7 +25,6 @@ public class VentanaLogin extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL; // Arreglo para campos de texto pequeños
 
-        // Título
         JLabel lblTitulo = new JLabel("Sistema Escolar");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -35,7 +33,6 @@ public class VentanaLogin extends JFrame {
         gbc.gridwidth = 2;
         panelPrincipal.add(lblTitulo, gbc);
 
-        // Usuario
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -46,7 +43,6 @@ public class VentanaLogin extends JFrame {
         txtUsuario = new JTextField(15);
         panelPrincipal.add(txtUsuario, gbc);
 
-        // Contraseña
         gbc.gridx = 0;
         gbc.gridy = 2;
         panelPrincipal.add(new JLabel("Contraseña:"), gbc);
@@ -66,7 +62,6 @@ public class VentanaLogin extends JFrame {
 
         add(panelPrincipal, BorderLayout.CENTER);
 
-        // Acción del botón
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,8 +72,8 @@ public class VentanaLogin extends JFrame {
                     JOptionPane.showMessageDialog(VentanaLogin.this,
                             "¡Bienvenido " + usuario + "!", "Login Exitoso",
                             JOptionPane.INFORMATION_MESSAGE);
-                    dispose(); // Cerrar ventana de login
-                    new VentanaPrincipal().setVisible(true); // Abrir ventana principal
+                    dispose();
+                    new VentanaPrincipal().setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(VentanaLogin.this,
                             "Usuario o contraseña incorrectos", "Error de Login",
@@ -87,7 +82,6 @@ public class VentanaLogin extends JFrame {
             }
         });
 
-        // Permitir login con Enter
         txtContrasena.addActionListener(e -> btnLogin.doClick());
     }
 }

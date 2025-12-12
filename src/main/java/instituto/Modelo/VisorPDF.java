@@ -141,7 +141,6 @@ public class VisorPDF extends JPanel {
         renderizador = new PDFRenderer(documento);
         paginas.clear();
 
-        // Renderizar todas las páginas
         for (int i = 0; i < documento.getNumberOfPages(); i++) {
             BufferedImage imagen = renderizador.renderImageWithDPI(i, 150);
             paginas.add(imagen);
@@ -197,7 +196,6 @@ public class VisorPDF extends JPanel {
                     paginas.size(),
                     escala * 100));
 
-            // Ajustar el tamaño del panel de contenido
             BufferedImage imagen = paginas.get(paginaActual);
             int w = (int) (imagen.getWidth() * escala);
             int h = (int) (imagen.getHeight() * escala);

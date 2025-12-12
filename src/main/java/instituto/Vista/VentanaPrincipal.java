@@ -16,12 +16,11 @@ public class VentanaPrincipal extends JFrame {
      * Controlador para tener acceso a las funciones de la base de datos
      */
     private Controlador controlador;
-    // Tablas
+
     private JTable tablaAlumnos;
     private JTable tablaAsignaturas;
     private JTable tablaMatriculas;
 
-    // Componentes de la GUI
     private JTabbedPane menuInterior;
     private JSplitPane panelDivisorCentral;
     private JPanel panelPrincipal;
@@ -32,10 +31,8 @@ public class VentanaPrincipal extends JFrame {
     private JMenuItem menuItemAgregarMatricula, menuItemEliminarMatricula;
     private JCheckBoxMenuItem menuItemVista;
 
-    // Iconos
     private ImageIcon iconPapel, iconAsignatura, iconAlumno, iconMatricula;
 
-    // PDF
     private VisorPDF visorPDF;
     private GestorPDF gestorPDF;
 
@@ -50,14 +47,12 @@ public class VentanaPrincipal extends JFrame {
 
         initGUI();
 
-        // Cargar datos iniciales
         cargarDatosAlumnos();
         cargarDatosAsignaturas();
         cargarDatosMatriculas();
     }
 
     public void initGUI() {
-        // Cargar y escalar iconos
         iconPapel = new ImageIcon("src/main/java/MM/Layouts/Práctica6/Imagenes/papellapiz.png");
         iconAsignatura = new ImageIcon("src/main/java/MM/Layouts/Práctica6/Imagenes/asignatura.png");
         iconAlumno = new ImageIcon("src/main/java/MM/Layouts/Práctica6/Imagenes/alumno.png");
@@ -68,55 +63,45 @@ public class VentanaPrincipal extends JFrame {
         iconMatricula = new ImageIcon(iconMatricula.getImage().getScaledInstance(36, 36, Image.SCALE_DEFAULT));
         iconPapel = new ImageIcon(iconPapel.getImage().getScaledInstance(36, 36, Image.SCALE_DEFAULT));
 
-        // Crear paneles para las tablas
         JPanel panelTablaAlumnos = crearPanelAlumnos();
         JPanel panelTablaAsignaturas = crearPanelAsignaturas();
         JPanel panelTablaMatriculas = crearPanelMatriculas();
 
-        // Configurar JTabbedPane
         menuInterior = new JTabbedPane();
         menuInterior.addTab("Alumnos", iconAlumno, panelTablaAlumnos);
         menuInterior.addTab("Asignatura", iconAsignatura, panelTablaAsignaturas);
         menuInterior.addTab("Matricula", iconMatricula, panelTablaMatriculas);
 
-        // Configurar JSplitPane
         panelDivisorCentral = new JSplitPane();
         panelDivisorCentral.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         panelDivisorCentral.setDividerSize(5);
         panelDivisorCentral.setDividerLocation(200);
         panelDivisorCentral.setResizeWeight(0.0);
 
-        // Panel izquierdo
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
         panelIzquierdo.setBackground(Color.LIGHT_GRAY);
 
-        // PDF
         visorPDF = new VisorPDF();
         gestorPDF = new GestorPDF(visorPDF, this);
         panelIzquierdo.add(visorPDF, BorderLayout.CENTER);
 
         panelDivisorCentral.setLeftComponent(panelIzquierdo);
 
-        // Configurar el panel derecho (tablas)
         panelDivisorCentral.setRightComponent(menuInterior);
 
-        // Añadir el split pane al panel principal
         panelPrincipal = new JPanel(new BorderLayout());
         panelPrincipal.add(panelDivisorCentral, BorderLayout.CENTER);
 
-        // Crear menú y barra de herramientas
         crearMenu();
 
         add(panelPrincipal);
 
-        // Mostrar ventana
         setVisible(true);
     }
 
     private void crearMenu() {
         menuBar = new JMenuBar();
 
-        // Menú Alumnos
         menuAlumno = new JMenu("Alumnos");
         menuItemAgregarAlumno = new JMenuItem("Añadir alumno");
         menuItemEliminarAlumno = new JMenuItem("Eliminar alumno");
@@ -125,7 +110,6 @@ public class VentanaPrincipal extends JFrame {
         menuAlumno.add(menuItemAgregarAlumno);
         menuAlumno.add(menuItemEliminarAlumno);
 
-        // Menú Asignatura
         menuAsignatura = new JMenu("Asignatura");
         menuItemAgregarAsignatura = new JMenuItem("Añadir asignatura");
         menuItemEliminarAsignatura = new JMenuItem("Eliminar asignatura");
@@ -134,7 +118,6 @@ public class VentanaPrincipal extends JFrame {
         menuAsignatura.add(menuItemAgregarAsignatura);
         menuAsignatura.add(menuItemEliminarAsignatura);
 
-        // Menú Matricula
         menuMatricula = new JMenu("Matricula");
         menuItemAgregarMatricula = new JMenuItem("Nueva matrícula");
         menuItemEliminarMatricula = new JMenuItem("Eliminar matrícula");
@@ -143,7 +126,6 @@ public class VentanaPrincipal extends JFrame {
         menuMatricula.add(menuItemAgregarMatricula);
         menuMatricula.add(menuItemEliminarMatricula);
 
-        // Menú PDF
         menuPDF = new JMenu("PDF");
 
         JMenuItem menuItemGenerarPDFActual = new JMenuItem("Generar PDF de tabla actual");
@@ -164,19 +146,16 @@ public class VentanaPrincipal extends JFrame {
         menuPDF.add(menuItemCargarPDF);
         menuPDF.add(menuItemCerrarPDF);
 
-        // Menú Vista
         menuVista = new JMenu("Vista");
         menuItemVista = new JCheckBoxMenuItem("Vista alumno");
         menuVista.add(menuItemVista);
 
-        // Añadir todos los menús a la barra
         menuBar.add(menuAlumno);
         menuBar.add(menuAsignatura);
         menuBar.add(menuMatricula);
         menuBar.add(menuPDF);
         menuBar.add(menuVista);
 
-        // Establecer la barra de menú en la ventana
         setJMenuBar(menuBar);
     }
 
@@ -210,7 +189,6 @@ public class VentanaPrincipal extends JFrame {
         return panel;
     }
 
-    // Métodos para cargar datos
     public void cargarDatosAlumnos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaAlumnos.getModel();
         modelo.setRowCount(0);
@@ -243,7 +221,6 @@ public class VentanaPrincipal extends JFrame {
         }
     }
 
-    // Métodos para abrir ventanas
     private void abrirVentanaAgregarAlumno() {
         new VentanaAgregarAlumno(this, controlador).setVisible(true);
     }
@@ -256,7 +233,6 @@ public class VentanaPrincipal extends JFrame {
         new VentanaAgregarMatricula(this, controlador).setVisible(true);
     }
 
-    // Métodos para eliminar
     private void eliminarAlumnoSeleccionado() {
         int fila = tablaAlumnos.getSelectedRow();
         if (fila != -1) {
@@ -294,7 +270,6 @@ public class VentanaPrincipal extends JFrame {
         Alumno alumno = null;
         Asignatura asignatura = null;
 
-        // Buscar alumno por nombre
         List<Alumno> alumnos = controlador.obtenerAlumnos();
         for (Alumno a : alumnos) {
             if (a.getNombre().equals(alumnoNombre)) {
@@ -330,13 +305,13 @@ public class VentanaPrincipal extends JFrame {
         int indiceActivo = menuInterior.getSelectedIndex();
 
         switch (indiceActivo) {
-            case 0: // Alumnos
+            case 0:
                 gestorPDF.generarPDFDesdeTabla(tablaAlumnos, "Listado de Alumnos");
                 break;
-            case 1: // Asignaturas
+            case 1:
                 gestorPDF.generarPDFDesdeTabla(tablaAsignaturas, "Listado de Asignaturas");
                 break;
-            case 2: // Matrículas
+            case 2:
                 gestorPDF.generarPDFDesdeTabla(tablaMatriculas, "Listado de Matrículas");
                 break;
         }

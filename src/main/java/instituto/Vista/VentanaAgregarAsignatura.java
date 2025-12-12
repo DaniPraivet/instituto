@@ -55,13 +55,11 @@ public class VentanaAgregarAsignatura extends JFrame {
         setTitle("Agregar Asignatura");
         setLayout(new BorderLayout());
 
-        // Panel de formulario
         JPanel panelForm = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
 
-        // Nombre
         gbc.gridx = 0;
         gbc.gridy = 0;
         panelForm.add(new JLabel("Nombre:"), gbc);
@@ -69,7 +67,6 @@ public class VentanaAgregarAsignatura extends JFrame {
         txtNombre = new JTextField(20);
         panelForm.add(txtNombre, gbc);
 
-        // Curso
         gbc.gridx = 0;
         gbc.gridy = 1;
         panelForm.add(new JLabel("Curso:"), gbc);
@@ -77,7 +74,6 @@ public class VentanaAgregarAsignatura extends JFrame {
         txtCurso = new JTextField(20);
         panelForm.add(txtCurso, gbc);
 
-        // Botones
         JPanel panelBotones = new JPanel();
         btnGuardar = new JButton("Guardar");
         btnCancelar = new JButton("Cancelar");
@@ -88,7 +84,6 @@ public class VentanaAgregarAsignatura extends JFrame {
         add(panelForm, BorderLayout.CENTER);
         add(panelBotones, BorderLayout.SOUTH);
 
-        // Eventos
         btnGuardar.addActionListener(e -> guardarAsignatura());
         btnCancelar.addActionListener(e -> dispose());
     }

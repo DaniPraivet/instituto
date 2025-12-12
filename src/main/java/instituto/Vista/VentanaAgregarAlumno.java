@@ -18,7 +18,6 @@ public class VentanaAgregarAlumno extends JFrame {
      * Controlador para acceder a los métodos de la base de datos
      */
     private Controlador controlador;
-    // Campos para el usuario
     private JTextField txtNombre, txtDireccion, txtEstadoMatricula;
     private JCheckBox chkCarnet;
     private JButton btnGuardar, btnCancelar;
@@ -36,7 +35,6 @@ public class VentanaAgregarAlumno extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(ventanaPrincipal);
 
-        // Componentes
         JPanel panel = new JPanel(new GridLayout(5, 2));
         panel.add(new JLabel("Nombre:"));
         txtNombre = new JTextField();
@@ -62,7 +60,6 @@ public class VentanaAgregarAlumno extends JFrame {
 
         add(panel);
 
-        // Acciones
         btnGuardar.addActionListener(e -> guardarAlumno());
         btnCancelar.addActionListener(e -> dispose());
     }
