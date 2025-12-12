@@ -2,6 +2,7 @@ import sun.tools.jar.resources.jar
 
 plugins {
     id("java")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 java {
@@ -37,6 +38,16 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
+
+tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+    archiveBaseName.set("instituto-all")
+    archiveClassifier.set("") // Esto hace que no tenga sufijo "-all"
+    archiveVersion.set("1.0-SNAPSHOT")
+    manifest {
+        attributes["Main-Class"] = "instituto.Vista.VentanaPrincipal"
+    }
+}
+
 
 tasks.test {
     useJUnitPlatform()
