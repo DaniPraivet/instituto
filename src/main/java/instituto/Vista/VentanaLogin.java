@@ -52,7 +52,6 @@ public class VentanaLogin extends JFrame {
         txtContrasena = new JPasswordField(15);
         panelPrincipal.add(txtContrasena, gbc);
 
-        // Botón de login
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 2;
@@ -70,7 +69,7 @@ public class VentanaLogin extends JFrame {
 
                 if (ConexionDAOInstituto.validarUsuario(usuario, contrasena)) {
                     JOptionPane.showMessageDialog(VentanaLogin.this,
-                            "¡Bienvenido " + usuario + "!", "Login Exitoso",
+                            "Correcto", "Login Exitoso",
                             JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     new VentanaPrincipal().setVisible(true);

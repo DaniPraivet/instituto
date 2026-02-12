@@ -18,8 +18,6 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        SwingUtilities.invokeLater(() -> {
             new VentanaLogin().setVisible(true);
-        });
     }
 }
